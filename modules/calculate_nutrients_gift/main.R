@@ -279,5 +279,7 @@ gift_data <- rbind(calculate_stat_gift,total_gift)
 
 gift_data[,`:=`(flagObservationStatus = "E", flagMethod = "e")]
 
+gift_data <- gift_data[!is.na(Value)]
+
 SaveData("suafbs","nutrients_gift_2022", 
-         gift_data ,waitTimeout = 20000)
+         gift_data ,waitTimeout = 2000000)

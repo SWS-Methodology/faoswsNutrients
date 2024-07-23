@@ -241,4 +241,6 @@ calculate_stat[, c('measuredElement', "Food", "Population", "Value", "food_EP"):
 
 setnames(calculate_stat, c("nutrients","new_value"), c("measuredElementSuaFbs", "Value"))
 
-SaveData("suafbs","nutrients_sua_2022", calculate_stat,waitTimeout = 20000)
+calculate_stat <- calculate_stat[!is.na(Value)]
+
+SaveData("suafbs","nutrients_sua_2022", calculate_stat, waitTimeout = Inf)
