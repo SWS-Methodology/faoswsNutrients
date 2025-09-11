@@ -182,6 +182,7 @@ totalsua_dcast <- dcast.data.table(totalsua, geographicAreaM49 + measuredItemFbs
 
 
 
+
 setnames(totalsua_dcast, '5141' , 'Food')
 
 totalsua_pop <- merge(totalsua_dcast, population, by = c('geographicAreaM49', 'timePointYears'), all.x = TRUE)
@@ -224,7 +225,7 @@ calculate_stat <- merge(calculate_stat, global_nct_country, by.x = c('measuredIt
 calculate_stat[!is.na(country_Value), Value := country_Value]
 calculate_stat[, c('country_Value'):= NULL]
 
-calculate_stat[, food_EP := Value[measuredElement %in% '1061'], by = c("measuredItemFbsSua")]
+calculate_stat[, food_EP := unique(Value[measuredElement %in% '1061']), by = c("measuredItemFbsSua")]
 
 
 #removing the element edible portion as it has been inserted as new column and is no need in the groups 
